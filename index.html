@@ -8,11 +8,19 @@
 </head>
 <body class="bg-light">
   <div class="container py-4">
-    <h1 class="mb-4">Daftar Data</h1>
+    <h1 class="mb-4" align="center">Daftar Data User</h1>
 
-    <div class="d-flex gap-2 mb-3">
-      <button id="btnTambah" class="btn btn-primary">Tambah Data</button>
-      <button id="btnHapus" class="btn btn-danger">Hapus Data</button>
+    <div class="mb-3">
+      <input type="text" id="nama" class="form-control" placeholder="Nama">
+      <input type="number" id="umur" class="form-control mt-2" placeholder="Umur">
+      <input type="text" id="alamat" class="form-control mt-2" placeholder="Alamat">
+      <input type="email" id="email" class="form-control mt-2" placeholder="Email">
+      <button id="btnTambah" class="btn btn-primary mt-2">Tambah Data</button>
+    </div>
+
+    <div class="mb-3">
+      <input type="text" id="hapusNama" class="form-control" placeholder="Nama yang ingin dihapus">
+      <button id="btnHapus" class="btn btn-danger mt-2">Hapus Data</button>
     </div>
 
     <div class="table-responsive">
@@ -37,14 +45,24 @@
 
     document.getElementById("btnTambah").addEventListener("click", () => {
       const newUsers = [
-        { nama: "Kurniawan Saputra", umur: 26, alamat: "Jl. Melati No. 9, Jakarta", email: "kurniawan.saputra@example.com" },
-        { nama: "Lestari Wulandari", umur: 22, alamat: "Jl. Kenanga No. 11, Bandung", email: "lestari.wulandari@example.com" }
+        {
+          nama: document.getElementById("nama").value,
+          umur: parseInt(document.getElementById("umur").value),
+          alamat: document.getElementById("alamat").value,
+          email: document.getElementById("email").value
+        }
       ];
       store(newUsers);
+
+      document.getElementById("nama").value = "";
+      document.getElementById("umur").value = "";
+      document.getElementById("alamat").value = "";
+      document.getElementById("email").value = "";
     });
 
     document.getElementById("btnHapus").addEventListener("click", () => {
-      destroy("Budi Santoso");
+      const nama = document.getElementById("hapusNama").value;
+      destroy(nama);
     });
   </script>
 </body>
